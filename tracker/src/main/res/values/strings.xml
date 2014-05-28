@@ -6,5 +6,6 @@
     <string name="action_settings">Settings</string>
     <string name="form_submit">Submit</string>
     <string name="access_token_label">Please enter access token below.</string>
+    <string name="title_activity_main">MainActivity</string>
 
 </resources>

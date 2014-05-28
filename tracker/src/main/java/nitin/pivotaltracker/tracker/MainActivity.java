@@ -1,43 +1,37 @@
 package nitin.pivotaltracker.tracker;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
+import android.widget.Toast;
 
 
-public class LoginActivity extends Activity {
+public class MainActivity extends Activity {
 
-    Button loginbtn;
-    EditText accessToken;
+    public String accessToken = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_main);
+        Intent loginIntent = getIntent();
+        accessToken = loginIntent.getExtras().getString("accessToken");
 
-        loginbtn = (Button)findViewById(R.id.accessTokenSubmitBtn);
-        loginbtn.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                // Do something in response to button click
-                accessToken = (EditText) findViewById(R.id.accessTokenTextBox);
-                Intent mainactivity = new Intent(LoginActivity.this,MainActivity.class);
-                mainactivity.putExtra("accessToken",accessToken.getText().toString());
-                startActivity(mainactivity);
-                finish();
-            }
-        });
+        Context context = getApplicationContext();
+        int duration = Toast.LENGTH_SHORT;
+
+        Toast toast = Toast.makeText(context, accessToken, duration);
+        toast.show();
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.login, menu);
+        getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 
